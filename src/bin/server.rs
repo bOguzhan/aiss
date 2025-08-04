@@ -6,11 +6,11 @@ use std::sync::Arc;
 use tokio::sync::Mutex;
 use tokio::net::{TcpListener, TcpStream};
 use tokio::io::{AsyncReadExt, AsyncWriteExt};
-use clap::Parser;
 use tokio_rustls::TlsAcceptor;
 use rustls::{ServerConfig, Certificate, PrivateKey};
 use std::fs::File;
 use std::io::BufReader;
+use clap::Parser;
 
 #[derive(Parser)]
 #[command(author, version, about, long_about = None)]
@@ -74,8 +74,9 @@ async fn load_tls_config(cert_path: &str, key_path: &str) -> Result<ServerConfig
         .map(Certificate)
         .collect();
     
-    let key = rustls_pemfile::private_key(&mut BufReader::new(key_file))?
-        .ok_or("no private key found")?;
+    // Use pkcs8_private_keys instead
+    let mut keys = rustls_pemfile::pkcs8_private_keys(&mut BufReader::new(key_file))?;
+    let key = keys.remove(0);
 
     let config = ServerConfig::builder()
         .with_safe_defaults()
@@ -96,6 +97,8 @@ async fn main() -> Result<(), Error> {
     
     let listener = TcpListener::bind(&addr).await?;
     println!("Secure server listening on {}", addr);
+
+    let server = Server::new();
 
     while let Ok((socket, addr)) = listener.accept().await {
         println!("New connection from: {}", addr);
