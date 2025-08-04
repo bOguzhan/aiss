@@ -13,20 +13,23 @@ struct Args {
     forward: Option<String>,
 
     #[arg(short, long)]
-    target: Option<String>,
+    port: Option<u16>,
+
+    #[arg(short, long)]
+    server_addr: String,
 }
 
 #[tokio::main]
 async fn main() -> Result<(), Error> {
     let args = Args::parse();
-    let server_addr: SocketAddr = "127.0.0.1:8080".parse()?;
+    let server_addr: SocketAddr = args.server_addr.parse()?;
     let local_addr: SocketAddr = "127.0.0.1:0".parse()?;
     
     let mut client = Client::new(
         args.id,
         local_addr,
         args.forward,
-        args.target
+        args.port
     );
     client.register(server_addr).await?;
     
