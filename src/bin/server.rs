@@ -7,12 +7,22 @@ use tokio::sync::Mutex;
 use tokio::net::{TcpListener, TcpStream};
 use tokio::io::{AsyncReadExt, AsyncWriteExt};
 use clap::Parser;
+use tokio_rustls::TlsAcceptor;
+use rustls::{ServerConfig, Certificate, PrivateKey};
+use std::fs::File;
+use std::io::BufReader;
 
 #[derive(Parser)]
 #[command(author, version, about, long_about = None)]
 struct Args {
-    #[arg(short, long, default_value = "8080")]
+    #[arg(short, long, default_value = "8081")]
     port: u16,
+
+    #[arg(short, long)]
+    cert_path: String,
+
+    #[arg(short, long)]
+    key_path: String,
 }
 
 #[derive(Clone)]
@@ -55,13 +65,37 @@ impl Server {
     }
 }
 
+async fn load_tls_config(cert_path: &str, key_path: &str) -> Result<ServerConfig, Error> {
+    let cert_file = File::open(cert_path)?;
+    let key_file = File::open(key_path)?;
+    
+    let cert_chain = rustls_pemfile::certs(&mut BufReader::new(cert_file))?
+        .into_iter()
+        .map(Certificate)
+        .collect();
+    
+    let key = rustls_pemfile::private_key(&mut BufReader::new(key_file))?
+        .ok_or("no private key found")?;
+
+    let config = ServerConfig::builder()
+        .with_safe_defaults()
+        .with_no_client_auth()
+        .with_single_cert(cert_chain, PrivateKey(key))?;
+    
+    Ok(config)
+}
+
 #[tokio::main]
 async fn main() -> Result<(), Error> {
     let args = Args::parse();
-    let server = Server::new();
     let addr = format!("0.0.0.0:{}", args.port);
+    
+    // Load TLS configuration
+    let tls_config = load_tls_config(&args.cert_path, &args.key_path).await?;
+    let acceptor = TlsAcceptor::from(Arc::new(tls_config));
+    
     let listener = TcpListener::bind(&addr).await?;
-    println!("Server listening on {}", addr);
+    println!("Secure server listening on {}", addr);
 
     while let Ok((socket, addr)) = listener.accept().await {
         println!("New connection from: {}", addr);
