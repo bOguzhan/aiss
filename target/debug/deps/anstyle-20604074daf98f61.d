@@ -1,0 +1,12 @@
+/Users/mac/Desktop/aiss/aiss/target/debug/deps/libanstyle-20604074daf98f61.rmeta: /Users/mac/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anstyle-1.0.11/src/lib.rs /Users/mac/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anstyle-1.0.11/src/macros.rs /Users/mac/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anstyle-1.0.11/src/color.rs /Users/mac/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anstyle-1.0.11/src/effect.rs /Users/mac/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anstyle-1.0.11/src/reset.rs /Users/mac/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anstyle-1.0.11/src/style.rs
+
+/Users/mac/Desktop/aiss/aiss/target/debug/deps/libanstyle-20604074daf98f61.rlib: /Users/mac/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anstyle-1.0.11/src/lib.rs /Users/mac/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anstyle-1.0.11/src/macros.rs /Users/mac/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anstyle-1.0.11/src/color.rs /Users/mac/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anstyle-1.0.11/src/effect.rs /Users/mac/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anstyle-1.0.11/src/reset.rs /Users/mac/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anstyle-1.0.11/src/style.rs
+
+/Users/mac/Desktop/aiss/aiss/target/debug/deps/anstyle-20604074daf98f61.d: /Users/mac/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anstyle-1.0.11/src/lib.rs /Users/mac/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anstyle-1.0.11/src/macros.rs /Users/mac/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anstyle-1.0.11/src/color.rs /Users/mac/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anstyle-1.0.11/src/effect.rs /Users/mac/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anstyle-1.0.11/src/reset.rs /Users/mac/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anstyle-1.0.11/src/style.rs
+
+/Users/mac/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anstyle-1.0.11/src/lib.rs:
+/Users/mac/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anstyle-1.0.11/src/macros.rs:
+/Users/mac/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anstyle-1.0.11/src/color.rs:
+/Users/mac/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anstyle-1.0.11/src/effect.rs:
+/Users/mac/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anstyle-1.0.11/src/reset.rs:
+/Users/mac/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anstyle-1.0.11/src/style.rs:

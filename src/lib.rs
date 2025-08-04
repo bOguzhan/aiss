@@ -1,6 +1,7 @@
-use std::collections::HashMap;
+pub mod client;
+pub mod hole_punch;
+
 use std::net::SocketAddr;
-use tokio::net::{TcpStream, TcpListener, UdpSocket};
 use serde::{Serialize, Deserialize};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -19,11 +20,19 @@ pub enum NatType {
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct PeerInfo {
+    pub id: String,
+    pub public_addr: SocketAddr,
+    pub local_addr: SocketAddr,
+    pub protocols: Vec<Protocol>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Registration {
-    client_id: String,
-    local_addr: SocketAddr,
-    public_addr: Option<SocketAddr>,
-    protocols: Vec<Protocol>,
+    pub client_id: String,
+    pub local_addr: SocketAddr,
+    pub public_addr: Option<SocketAddr>,
+    pub protocols: Vec<Protocol>,
 }
 
 pub type Error = Box<dyn std::error::Error + Send + Sync>;
