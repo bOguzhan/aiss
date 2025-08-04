@@ -29,7 +29,8 @@ async fn main() -> Result<(), Error> {
         args.id,
         local_addr,
         args.forward,
-        args.port
+        // Convert port to String if it exists
+        args.port.map(|p| p.to_string())
     );
     client.register(server_addr).await?;
     
